@@ -41,6 +41,9 @@ class Multilingual extends Component implements BootstrapInterface
     /** @var null|int User language ID determined by requested Language Events */
     public $language_id = null;
 
+    /** @var null|int User language ID determined on configuration */
+    public $rescue_language_id = null;
+
     /** @var null|int Context id */
     public $context_id = null;
 

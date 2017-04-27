@@ -19,6 +19,7 @@ class MultilingualActiveRecord extends Behavior
 
     public $translationRelation = 'translations';
     public $defaultTranslationRelation = 'defaultTranslation';
+    public $rescueTranslationRelation = 'rescueTranslation';
 
     /**
      * @var string|bool attribute that stores published state in translation record, false if published state is N/A
@@ -116,6 +117,12 @@ class MultilingualActiveRecord extends Behavior
             }
         }
         // translation does not exists!
+
+        // we try to use the "rescue" translation
+        $translation = $owner->{$this->rescueTranslationRelation};
+        if ($translation !== null) {
+            return $translation;
+        }
 
         /** @var ActiveRecord $class */
         $class = $this->getTranslationModelClassName();
